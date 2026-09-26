@@ -101,6 +101,131 @@ El script `src/extract_data.py` automatiza el proceso de extracción y transform
 
 ---
 
+
 ## 🔐 Seguridad
 
-La A
+La API Key no está escrita directamente en el código.
+
+Se utiliza un archivo `.env`:
+
+```text
+API_KEY=your_api_key
+```
+
+Este archivo está excluido mediante `.gitignore` y **no forma parte del repositorio**.
+
+Se incluye `.env.example` como plantilla para indicar qué variable debe configurarse:
+
+```text
+API_KEY=your_openfda_api_key_here
+```
+
+---
+
+## 🛠️ Tecnologías
+
+* Python 3.11
+* Requests
+* python-dotenv
+* Pandas
+* PyArrow
+* ijson
+* JupyterLab
+
+---
+
+## 📁 Estructura del proyecto
+
+```text
+openfda-pharmacology-data-pipeline/
+│
+├── data/
+│   └── sample_data.json
+│
+├── notebooks/
+│   └── 01_api_exploration.ipynb
+│
+├── src/
+│   └── extract_data.py
+│
+├── .env.example
+├── .gitignore
+├── requirements.txt
+└── README.md
+```
+
+El archivo `data/data_extracted.json` completo se mantiene únicamente de forma local debido a su tamaño.
+
+---
+
+## ▶️ Instalación y ejecución
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <repository-url>
+cd openfda-pharmacology-data-pipeline
+```
+
+### 2. Crear un entorno virtual
+
+```bash
+conda create -n openfda_ds python=3.11
+conda activate openfda_ds
+```
+
+### 3. Instalar las dependencias
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Configurar la API Key
+
+Crear un archivo `.env` en la raíz del proyecto:
+
+```text
+API_KEY=your_openfda_api_key
+```
+
+### 5. Ejecutar la extracción
+
+```bash
+python src/extract_data.py
+```
+
+El proceso generará:
+
+```text
+data/data_extracted.json
+```
+
+---
+
+## 🚀 Próximos pasos
+
+Este proyecto se concentra en la **extracción y almacenamiento**, por lo que no se aplican todavía técnicas de NLP o Machine Learning.
+
+Como posibles extensiones se plantea:
+
+* Conversión del JSON a **Parquet** para análisis más eficiente.
+* Consulta del dataset mediante **DuckDB**.
+* Análisis exploratorio de las variables farmacológicas.
+* Identificación y análisis de principios activos.
+* Preparación de variables para futuros modelos de Machine Learning.
+* Análisis posterior de textos farmacológicos mediante técnicas de NLP.
+
+---
+
+## 📌 Nota
+
+Este proyecto utiliza datos proporcionados por la API pública de **openFDA Drug Labeling** con fines educativos y de análisis de datos.
+
+🛠️ Tecnologías
+Python 3.11
+Requests
+python-dotenv
+Pandas
+PyArrow
+ijson
+JupyterLab
